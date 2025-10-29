@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-cafe {
+  background: linear-gradient(90deg, #8d6748 70%, #d2b48c 100%);
+}
+
+.navbar-brand, .nav-link, .badge {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.badge-cafe {
+  background-color: #a98269 !important;
+  color: #fff;
+  font-weight: bold;
+}
+.btn-cafe {
+  background-color: #a98269 !important; /* café medio */
+  border-color: #8d6748 !important;     /* borde más oscuro */
+  color: #fff !important;               /* texto blanco */
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.btn-cafe:hover,
+.btn-cafe:focus {
+  background-color: #5d4736 !important; /* café oscuro al pasar mouse */
+  border-color: #2f1e0f !important;
+  color: #dedede !important;
+}
+
+
