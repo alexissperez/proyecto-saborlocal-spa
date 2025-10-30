@@ -49,7 +49,7 @@ export const products = [
   categoria: "Lácteos",
   precio: 3990,
   productor: "Hermanas del Campo",
-  imagen: "/images/products/miel-ulmo.png"
+  imagen: "/images/products/bebida-probiotica-kefir.png"
   },
 
   {
@@ -58,7 +58,7 @@ export const products = [
   categoria: "Lácteos",
   precio: 2990,
   productor: "Hermanas del Campo",
-  imagen: "/images/products/huevos-campo.png"
+  imagen: "/images/products/mantequilla-campo.png"
   }
 ];
 
