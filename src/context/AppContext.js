@@ -1,30 +1,24 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React, { createContext, useState } from 'react';
 
-const Cart = () => {
-  const { carrito, vaciarCarrito } = useContext(AppContext);
+export const AppContext = createContext();
+
+export const AppProvider = ({ children }) => {
+  const [carrito, setCarrito] = useState([]);
+
+  const agregarAlCarrito = (producto) => {
+    setCarrito(prev => [...prev, producto]);
+  };
+
+  const vaciarCarrito = () => {
+    setCarrito([]);
+  };
 
   return (
-    <div>
-      <h3>Mi Carrito</h3>
-      <hr />
-      <h4>Productos en el carrito</h4>
-      <ul>
-        {carrito.map((producto, i) => (
-          <li key={i}>
-            {producto.nombre} - ${producto.precio}
-          </li>
-        ))}
-      </ul>
-      <strong>Total a pagar: ${carrito.reduce((acc, item) => acc + item.precio, 0)}</strong>
-      <br /><br />
-
-      {/* Botón abajo centrado */}
-      <button style={{marginTop: "16px"}} onClick={vaciarCarrito}>Vaciar carrito</button>
-
-      {/* Aquí abajo podrías poner el botón Cerrar */}
-    </div>
+    <AppContext.Provider value={{ carrito, agregarAlCarrito, vaciarCarrito }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
-export default Cart;
+// opcional: export por defecto para compatibilidad con imports default
+export default AppContext;
