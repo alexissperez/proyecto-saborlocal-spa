@@ -2,14 +2,14 @@ import React from 'react';
 
 const Home = () => (
   <div className="container mt-5">
-  <h1 className="display-4 fw-bold" style={{ color: '#5c3a1c' }}>
-    Bienvenido a SaborLocal
+  <h1 className="display-4 fw-bold" style={{ color: '#dd7b26ff' }}>
+    Bienvenidos a SaborLocal
   </h1>
-  <p className="lead" style={{ color: '#7b5e42' }}>
-    Vive la experiencia gourmet del campo directo a tu mesa. 
-    Apoya a los emprendedores rurales adquiriendo productos frescos, naturales y llenos de tradición.
+  <p className="lead" style={{ color: '#4caf65ff' }}>
+    Vive la experiencia de consumir productos de gran calidad y sabor.  
+    Apoya a emprendedores rurales adquiriendo productos de temporada y libres de conservantes.
   </p>
-  <p className="h5" style={{ color: '#b48a5f' }}>
+  <p className="h5" style={{ color: '#244d2bff' }}>
     ¡Descubre, saborea y comparte el verdadero sabor local!
   </p>
 </div>
