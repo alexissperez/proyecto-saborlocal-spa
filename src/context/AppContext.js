@@ -1,37 +1,18 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState(() => {
-    try {
-      const saved = localStorage.getItem('carrito');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  // El estado carrito es un array de productos
+  const [carrito, setCarrito] = useState([]);
 
-  useEffect(() => {
-    try {
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-    } catch {}
-  }, [carrito]);
-
+  // Función para agregar productos
   const agregarAlCarrito = (producto) => {
-    setCarrito(prev => [...prev, producto]);
+    setCarrito([...carrito, producto]);
   };
-
-  const quitarDelCarrito = (id) => {
-    setCarrito(prev => prev.filter(p => p.id !== id));
-  };
-
-  const limpiarCarrito = () => setCarrito([]);
-
-  const contador = carrito.length;
 
   return (
-    <AppContext.Provider value={{ carrito, contador, agregarAlCarrito, quitarDelCarrito, limpiarCarrito }}>
+    <AppContext.Provider value={{ carrito, agregarAlCarrito }}>
       {children}
     </AppContext.Provider>
   );

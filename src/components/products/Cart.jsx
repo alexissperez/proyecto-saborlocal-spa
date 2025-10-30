@@ -6,7 +6,7 @@ const Cart = () => {
   const total = carrito.reduce((sum, prod) => sum + prod.precio, 0);
 
   return (
-    <div>
+    <div className="carrito-box">
       <h4>Productos en el carrito</h4>
       <ul>
         {carrito.map((prod, i) => (
@@ -21,5 +21,6 @@ const Cart = () => {
 };
 
 export default Cart;
+
 
 

@@ -76,3 +76,9 @@
   border: 1px solid #155320;
 }
 
+.carrito-box {
+  background-color: #206a2c;
+  color: white;
+  border-radius: 12px;
+  padding: 24px;
+}
