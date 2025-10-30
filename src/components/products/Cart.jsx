@@ -2,25 +2,23 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 const Cart = () => {
-  const { carrito } = useContext(AppContext);
-  const total = carrito.reduce((sum, prod) => sum + prod.precio, 0);
+  const { carrito, vaciarCarrito } = useContext(AppContext);
 
   return (
-    <div className="carrito-box">
+    <div>
       <h4>Productos en el carrito</h4>
       <ul>
-        {carrito.map((prod, i) => (
-          <li key={i}>
-            {prod.nombre} - ${prod.precio}
-          </li>
+        {carrito.map((producto, i) => (
+          <li key={i}>{producto.nombre} - ${producto.precio}</li>
         ))}
       </ul>
-      <strong>Total a pagar: ${total}</strong>
+      <strong>Total a pagar: ${carrito.reduce((acc, item) => acc + item.precio, 0)}</strong>
+
+      {/* Aquí va el botón para vaciar el carrito */}
+      <button onClick={vaciarCarrito}>Vaciar carrito</button>
     </div>
   );
 };
 
 export default Cart;
-
-
 

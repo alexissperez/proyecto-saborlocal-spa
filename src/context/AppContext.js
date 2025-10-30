@@ -11,9 +11,15 @@ export const AppProvider = ({ children }) => {
     setCarrito([...carrito, producto]);
   };
 
+  // Nueva función para vaciar el carrito
+  const vaciarCarrito = () => {
+    setCarrito([]);
+  };
+
   return (
-    <AppContext.Provider value={{ carrito, agregarAlCarrito }}>
+    <AppContext.Provider value={{ carrito, agregarAlCarrito, vaciarCarrito }}>
       {children}
     </AppContext.Provider>
   );
 };
+
