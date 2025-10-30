@@ -1,19 +1,16 @@
 import React, { createContext, useState } from 'react';
 
-// Creamos el contexto
 export const AppContext = createContext();
 
-// Proveedor del contexto, que envuelve la aplicación
 export const AppProvider = ({ children }) => {
-  // Estado global: contador del carrito (puedes agregar más estados)
-  const [contador, setContador] = useState(0);
+  const [carrito, setCarrito] = useState([]);
 
-  // Función para incrementar el contador (agregar al carrito)
-  const incrementar = () => setContador(contador + 1);
+  const agregarAlCarrito = (producto) => {
+    setCarrito([...carrito, producto]);
+  };
 
-  // Retornamos el provider que da acceso al estado/funciones globales
   return (
-    <AppContext.Provider value={{ contador, incrementar }}>
+    <AppContext.Provider value={{ carrito, agregarAlCarrito }}>
       {children}
     </AppContext.Provider>
   );

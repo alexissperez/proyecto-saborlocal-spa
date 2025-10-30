@@ -65,4 +65,14 @@
   color: #dedede !important;
 }
 
+.btn-verde-oscuro {
+  background-color: #206a2c;
+  color: white;
+  border: 1px solid #155320;
+}
+.btn-verde-oscuro:hover, .btn-verde-oscuro:active, .btn-verde-oscuro:focus {
+  background-color: #184b21;
+  color: white;
+  border: 1px solid #155320;
+}
 

@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
-import products from '../data/gaming.mock';
+import { products } from '../data/gaming.mock';
 import { AppContext } from '../context/AppContext';
-import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
-import ProductCard from '../components/products/ProductCard';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import ProductGrid from '../components/products/ProductGrid';
 
 const Products = () => {
@@ -20,10 +19,12 @@ const Products = () => {
       : products.filter(p => p.categoria === categoriaSeleccionada);
 
   // Función para manejar agregar al carrito
-  const handleAgregar = (producto) => {
-    incrementar();
-    alert(`Agregaste ${producto.nombre} al carrito`);
-  };
+const { agregarAlCarrito } = useContext(AppContext);
+
+const handleAgregar = (producto) => {
+  agregarAlCarrito(producto);
+};
+
 
   return (
     <div>
@@ -34,26 +35,25 @@ const Products = () => {
         {categorias.map(cat => (
           <Button
             key={cat}
-            variant={cat === categoriaSeleccionada ? 'primary' : 'outline-primary'}
+            className="btn-verde-oscuro"
+            variant={cat === categoriaSeleccionada ? 'verde-oscuro' : 'outline-verde-oscuro'}
+            style={{
+              backgroundColor: cat === categoriaSeleccionada ? '#206a2c' : 'transparent',
+              color: cat === categoriaSeleccionada ? 'white' : '#206a2c',
+              borderColor: '#155320'
+            }}
             onClick={() => setCategoriaSeleccionada(cat)}
-          >
+            >
             {cat}
           </Button>
         ))}
       </ButtonGroup>
-
-      {/* Listado de productos filtrados */}
-      <Row>
-        {productosFiltrados.map(producto => (
-          <Col key={producto.id} sm={12} md={6} lg={4} className="mb-4">
-            <ProductCard producto={producto} onAgregar={handleAgregar} />
-            <ProductGrid productos={productosFiltrados} onAgregar={handleAgregar} />
-          </Col>
-        ))}
-      </Row>
+      {/* Solo una vez el grid de productos */}
+      <ProductGrid productos={productosFiltrados} onAgregar={handleAgregar} />
     </div>
   );
 };
 
 export default Products;
+
 
