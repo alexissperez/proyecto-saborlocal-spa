@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppProvider } from './context/AppContext'; // Importa tu context
 import NavBar from './components/NavBar';            // Barra de navegación
 import AppRoutes from './app/routes';                // Rutas
+// Debe ser:
+import { login as apiLogin } from '../services/authService';
 
 // Componente principal. Envuelve la app con el Context y el Router.
 function App() {
