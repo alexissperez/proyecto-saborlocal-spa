@@ -1,19 +1,17 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { AppProvider } from './context/AppContext'; // Importa tu context
-import NavBar from './components/NavBar';            // Barra de navegación
-import AppRoutes from './app/routes';                // Rutas
-// Debe ser:
-import { login as apiLogin } from '../services/authService';
+import { AppProvider } from './context/AppContext';
+import NavBar from './components/NavBar';
+import AppRoutes from './app/routes';
+import { login as apiLogin } from './services/authService';
 
-// Componente principal. Envuelve la app con el Context y el Router.
 function App() {
   return (
     <AppProvider>
       <BrowserRouter>
-        <NavBar />      {/* Barra arriba en todas las páginas */}
+        <NavBar />
         <div className="container mt-4">
-          <AppRoutes /> {/* Aquí se muestran las páginas según la ruta */}
+          <AppRoutes />
         </div>
       </BrowserRouter>
     </AppProvider>
@@ -21,4 +19,3 @@ function App() {
 }
 
 export default App;
-
