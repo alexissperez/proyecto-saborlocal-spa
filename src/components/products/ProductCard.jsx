@@ -1,31 +1,57 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Badge } from 'react-bootstrap';
 
-const ProductCard = ({ producto, onAgregar }) => (
-  <Card className="h-100">
-    <Card.Img
-      variant="top"
-      src={producto.imagen || producto.imageUrl} // ajusta el nombre según tu mock
-      alt={producto.nombre || producto.name}
-      style={{ objectFit: 'cover', height: '180px' }}
-    />
-    <Card.Body className="d-flex flex-column">
-      <Card.Title>{producto.nombre || producto.name}</Card.Title>
-      <Card.Text>
-        <strong>Categoría:</strong> {producto.categoria || producto.category}<br/>
-        <strong>Productor:</strong> {producto.productor || producto.producer}<br/>
-        <strong>Precio:</strong> ${producto.precio || producto.price}
-      </Card.Text>
-      <Button
-        variant="dark"
-        className="mt-auto"
-        onClick={() => onAgregar(producto)}
-      >
-        Agregar al carrito
-      </Button>
-    </Card.Body>
-  </Card>
-);
+const ProductCard = ({ producto, onAgregar }) => {
+  const nombre = producto.nombre || producto.name;
+  const categoria = producto.categoria || producto.category;
+  const productor = producto.productor || producto.producer;
+  const precioRaw = producto.precio ?? producto.price;
+  const imagen = producto.imagen || producto.imageUrl;
+
+  return (
+    <Card className="h-100 shadow-sm card-hover">
+      {imagen && (
+        <Card.Img
+          variant="top"
+          src={imagen}
+          alt={`Imagen de ${nombre}`}
+          loading="lazy"
+          style={{ objectFit: 'cover', height: 180 }}
+        />
+      )}
+
+      <Card.Body className="d-flex flex-column">
+        <div className="d-flex justify-content-between align-items-start mb-2">
+          <Card.Title className="mb-0" style={{ fontSize: '1rem', lineHeight: 1.2 }}>
+            {nombre}
+          </Card.Title>
+          {categoria && <Badge bg="secondary">{categoria}</Badge>}
+        </div>
+
+        <Card.Text className="text-muted mb-3" style={{ fontSize: '0.9rem' }}>
+          {productor && (
+            <>
+              <strong>Productor:</strong> {productor}
+              <br />
+            </>
+          )}
+          <strong>Precio:</strong>{' '}
+          {precioRaw !== undefined
+            ? `$${Number(precioRaw).toLocaleString('es-CL')}`
+            : '—'}
+        </Card.Text>
+
+        <Button
+          variant="primary"
+          onClick={() => onAgregar(producto)}
+          className="mt-auto"
+          aria-label={`Agregar ${nombre} al carrito`}
+        >
+          Agregar al carrito
+        </Button>
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default ProductCard;
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Contact from '../pages/Contact';
+import Contact from './Contact';
 
 test('formulario muestra errores y éxito', () => {
   render(<Contact />);

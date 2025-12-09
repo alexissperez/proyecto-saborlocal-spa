@@ -82,3 +82,122 @@
   border-radius: 12px;
   padding: 24px;
 }
+
+.card-hover {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.navbar-saborlocal {
+  background-color: #f8f9fa;
+}
+
+.navbar-saborlocal .navbar-brand {
+  font-weight: 600;
+}
+
+.navbar-saborlocal .nav-link {
+  color: #333 !important;
+  font-weight: 500;
+}
+
+.navbar-saborlocal .nav-link:hover {
+  color: #000 !important;
+}
+
+.badge-cart {
+  cursor: pointer;
+}
+.navbar-saborlocal .navbar-brand {
+  color: #000 !important;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.5rem;
+  background-color: #e02424;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1.1rem; /* un poco más pequeño */
+  cursor: pointer;
+  color: #222;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.simple-icon {
+  font-size: 1rem;
+  color: #333;
+}
+
+.simple-text {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.icon-button:hover {
+  color: #111;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -0.35rem;
+  right: -0.45rem;
+  background-color: #e02424;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+}

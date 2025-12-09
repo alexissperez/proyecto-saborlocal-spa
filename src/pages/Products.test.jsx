@@ -22,14 +22,18 @@ const Products = () => {
     <main>
       <Container className="mt-4">
         <Row className="align-items-center mb-3">
-        <Col>
-          <h2 className="mb-1">Catálogo SaborLocal</h2>
-          <p className="text-muted mb-0">
-            Lácteos, conservas y panadería artesanal de productores locales.
-          </p>
-        </Col>
+          <Col>
+            <h2 className="mb-1">Catálogo SaborLocal</h2>
+            <p className="text-muted mb-0">
+              Lácteos, conservas y panadería artesanal de productores locales.
+            </p>
+          </Col>
+          <Col xs="auto">
+            <Badge bg="success" pill>
+              En carrito: {carrito.length}
+            </Badge>
+          </Col>
         </Row>
-
 
         <Filters
           categorias={['Todos', ...categories]}

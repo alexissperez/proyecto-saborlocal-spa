@@ -6,7 +6,15 @@ const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return <div className="text-center mt-5">Cargando...</div>;
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: '40vh' }}
+      >
+        <div className="spinner-border text-success me-2" role="status" />
+        <span>Cargando sesión...</span>
+      </div>
+    );
   }
 
   if (!isAuthenticated) {

@@ -1,41 +1,61 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getToken, getUser, isAuthenticated } from '../services/authService';
 
-export const AppContext = createContext();
+export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
   const [auth, setAuth] = useState({
     loading: true,
     isAuthenticated: false,
-    user: null
+    user: null,
   });
 
-  // Verificar sesión al iniciar la app
+  // Cargar sesión al iniciar la app
   useEffect(() => {
     const token = getToken();
     const user = getUser();
-    setAuth({
-      loading: false,
-      isAuthenticated: isAuthenticated(),
-      user: user
-    });
+
+    if (token && user && isAuthenticated()) {
+      setAuth({
+        loading: false,
+        isAuthenticated: true,
+        user,
+      });
+    } else {
+      setAuth({
+        loading: false,
+        isAuthenticated: false,
+        user: null,
+      });
+    }
   }, []);
 
+  // Manejo de auth
   const login = (user, token) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    setAuth({ loading: false, isAuthenticated: true, user });
+    setAuth({
+      loading: false,
+      isAuthenticated: true,
+      user,
+    });
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    setAuth({ loading: false, isAuthenticated: false, user: null });
+    setAuth({
+      loading: false,
+      isAuthenticated: false,
+      user: null,
+    });
+    setCarrito([]);
   };
 
+  // Carrito
   const agregarAlCarrito = (producto) => {
-    setCarrito(prev => [...prev, producto]);
+    setCarrito((prev) => [...prev, producto]);
   };
 
   const vaciarCarrito = () => {
@@ -50,7 +70,7 @@ export const AppProvider = ({ children }) => {
         vaciarCarrito,
         auth,
         login,
-        logout
+        logout,
       }}
     >
       {children}

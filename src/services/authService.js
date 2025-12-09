@@ -1,5 +1,5 @@
 // src/services/authService.js
-const API_URL = 'http://localhost:8080/auth/login';
+const API_URL = 'http://localhost:8080';
 
 export const login = async (credentials) => {
   const response = await fetch(`${API_URL}/auth/login`, {
@@ -21,6 +21,7 @@ export const logout = () => {
 
 export const getToken = () => localStorage.getItem('token');
 
-export const getUser = () => JSON.parse(localStorage.getItem('user'));
+export const getUser = () =>
+  JSON.parse(localStorage.getItem('user'));
 
 export const isAuthenticated = () => !!getToken();
