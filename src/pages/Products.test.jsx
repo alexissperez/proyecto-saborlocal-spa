@@ -1,56 +1,24 @@
-import React, { useContext, useMemo, useState } from 'react';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
-import { products, categories } from '../data/gaming.mock';
-import { AppContext } from '../context/AppContext';
-import Filters from '../components/products/Filters';
-import ProductGrid from '../components/products/ProductGrid';
+// src/pages/Products.test.jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Products from './Products';
+import { AppProvider } from '../context/AppContext';
 
-const Products = () => {
-  const { agregarAlCarrito, carrito } = useContext(AppContext);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
+const renderWithContext = (ui) =>
+  render(<AppProvider>{ui}</AppProvider>);
 
-  const productosFiltrados = useMemo(() => {
-    if (categoriaSeleccionada === 'Todos') return products;
-    return products.filter((p) => p.categoria === categoriaSeleccionada);
-  }, [categoriaSeleccionada]);
+test('muestra el título del catálogo en la página de productos', () => {
+  renderWithContext(<Products />);
 
-  const handleAgregar = (producto) => {
-    agregarAlCarrito(producto);
-  };
+  // El título lo usas tanto en el banner como en el contenido
+  const titulo = screen.getAllByText(/Catálogo SaborLocal/i);
+  expect(titulo.length).toBeGreaterThan(0);
+});
 
-  return (
-    <main>
-      <Container className="mt-4 mb-5">
-        <Row className="align-items-center mb-3">
-          <Col>
-            <h2 className="mb-1">Catálogo SaborLocal</h2>
-            <p className="text-muted mb-0">
-              Lácteos, conservas y panadería artesanal de productores locales.
-            </p>
-          </Col>
-          <Col xs="auto">
-            <Badge bg="success" pill>
-              En carrito: {carrito.length}
-            </Badge>
-          </Col>
-        </Row>
+test('muestra los filtros de productos', () => {
+  renderWithContext(<Products />);
 
-        <div className="catalog-filters mb-4">
-          <Filters
-            categorias={['Todos', ...categories]}
-            categoriaSeleccionada={categoriaSeleccionada}
-            setCategoriaSeleccionada={setCategoriaSeleccionada}
-            totalProductos={products.length}
-          />
-        </div>
-
-        <ProductGrid
-          productos={productosFiltrados}
-          onAgregar={handleAgregar}
-        />
-      </Container>
-    </main>
-  );
-};
-
-export default Products;
+  // Hay al menos un botón "Todos" (puede haber más de uno)
+  const todosButtons = screen.getAllByText(/Todos/i);
+  expect(todosButtons.length).toBeGreaterThan(0);
+});

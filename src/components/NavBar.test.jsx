@@ -1,18 +1,14 @@
+// src/components/NavBar.test.jsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NavBar from '../components/NavBar';
-import { AppContext } from '../context/AppContext';
 import { BrowserRouter } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import NavBar from './NavBar';
 
 test('NavBar muestra nombre y enlaces', () => {
   const mockContext = {
     carrito: [],
-    auth: { isAuthenticated: false, loading: false, user: null },
-    login: jest.fn(),
-    logout: jest.fn(),
-    agregarAlCarrito: jest.fn(),
-    eliminarDelCarrito: jest.fn(),
-    vaciarCarrito: jest.fn(),
+    auth: { isAuthenticated: false, user: null },
   };
 
   render(
@@ -23,7 +19,19 @@ test('NavBar muestra nombre y enlaces', () => {
     </BrowserRouter>
   );
 
-  expect(screen.getByText(/SaborLocal/i)).toBeInTheDocument();
+  // Marca: comprobar el bloque completo "Sabor Local"
+  expect(
+    screen.getByText((text, element) =>
+      element.classList.contains('brand-main') && text.includes('Sabor')
+    )
+  ).toBeInTheDocument();
+
+  expect(
+    screen.getByText((text, element) =>
+      element.classList.contains('brand-accent') && text.includes('Local')
+    )
+  ).toBeInTheDocument();
+
   expect(screen.getByText(/Inicio/i)).toBeInTheDocument();
   expect(screen.getByText(/Productos/i)).toBeInTheDocument();
   expect(screen.getByText(/Contacto/i)).toBeInTheDocument();

@@ -63,63 +63,79 @@ const Contact = () => {
 
           <div className="border rounded bg-white p-4">
             <Form onSubmit={handleSubmit} noValidate>
-              <Row className="mb-3">
-                <Form.Label className="col-sm-3 col-form-label">
-                  Nombre
-                </Form.Label>
-                <Col sm={9}>
-                  <Form.Control
-                    type="text"
-                    name="nombre"
-                    value={form.nombre}
-                    onChange={handleChange}
-                    isInvalid={!!errores.nombre}
-                    placeholder="Tu nombre completo"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errores.nombre}
-                  </Form.Control.Feedback>
-                </Col>
-              </Row>
+             {/* NOMBRE */}
+                <Row className="mb-3">
+                  <Form.Label
+                    htmlFor="nombre"                         // 👈 agregar
+                    className="col-sm-3 col-form-label"
+                  >
+                    Nombre
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Control
+                      id="nombre"                            // 👈 agregar
+                      type="text"
+                      name="nombre"
+                      value={form.nombre}
+                      onChange={handleChange}
+                      isInvalid={!!errores.nombre}
+                      placeholder="Tu nombre completo"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errores.nombre}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Row>
 
-              <Row className="mb-3">
-                <Form.Label className="col-sm-3 col-form-label">
-                  Correo electrónico
-                </Form.Label>
-                <Col sm={9}>
-                  <Form.Control
-                    type="email"
-                    name="correo"
-                    value={form.correo}
-                    onChange={handleChange}
-                    isInvalid={!!errores.correo}
-                    placeholder="ejemplo@correo.cl"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errores.correo}
-                  </Form.Control.Feedback>
-                </Col>
-              </Row>
+                {/* CORREO */}
+                <Row className="mb-3">
+                  <Form.Label
+                    htmlFor="correo"                         // 👈 agregar
+                    className="col-sm-3 col-form-label"
+                  >
+                    Correo electrónico
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Control
+                      id="correo"                            // 👈 agregar
+                      type="email"
+                      name="correo"
+                      value={form.correo}
+                      onChange={handleChange}
+                      isInvalid={!!errores.correo}
+                      placeholder="ejemplo@correo.cl"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errores.correo}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Row>
 
-              <Row className="mb-4">
-                <Form.Label className="col-sm-3 col-form-label">
-                  Mensaje
-                </Form.Label>
-                <Col sm={9}>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    name="mensaje"
-                    value={form.mensaje}
-                    onChange={handleChange}
-                    isInvalid={!!errores.mensaje}
-                    placeholder="Cuéntanos en qué podemos ayudarte"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errores.mensaje}
-                  </Form.Control.Feedback>
-                </Col>
-              </Row>
+                {/* MENSAJE */}
+                <Row className="mb-4">
+                  <Form.Label
+                    htmlFor="mensaje"                        // 👈 agregar
+                    className="col-sm-3 col-form-label"
+                  >
+                    Mensaje
+                  </Form.Label>
+                  <Col sm={9}>
+                    <Form.Control
+                      id="mensaje"                           // 👈 agregar
+                      as="textarea"
+                      rows={4}
+                      name="mensaje"
+                      value={form.mensaje}
+                      onChange={handleChange}
+                      isInvalid={!!errores.mensaje}
+                      placeholder="Cuéntanos en qué podemos ayudarte"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errores.mensaje}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Row>
+
 
               <div className="text-end">
                 <Button
