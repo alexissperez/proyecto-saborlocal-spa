@@ -20,7 +20,7 @@ const Products = () => {
 
   return (
     <main>
-      <Container className="mt-4">
+      <Container className="mt-4 mb-5">
         <Row className="align-items-center mb-3">
           <Col>
             <h2 className="mb-1">Catálogo SaborLocal</h2>
@@ -35,12 +35,14 @@ const Products = () => {
           </Col>
         </Row>
 
-        <Filters
-          categorias={['Todos', ...categories]}
-          categoriaSeleccionada={categoriaSeleccionada}
-          setCategoriaSeleccionada={setCategoriaSeleccionada}
-          totalProductos={products.length}
-        />
+        <div className="catalog-filters mb-4">
+          <Filters
+            categorias={['Todos', ...categories]}
+            categoriaSeleccionada={categoriaSeleccionada}
+            setCategoriaSeleccionada={setCategoriaSeleccionada}
+            totalProductos={products.length}
+          />
+        </div>
 
         <ProductGrid
           productos={productosFiltrados}
