@@ -4,7 +4,6 @@ import {
   Navbar,
   Nav,
   Container,
-  NavDropdown,
   Modal,
   Button,
 } from 'react-bootstrap';
@@ -27,13 +26,14 @@ const NavBar = () => {
     <>
       <Navbar className="navbar-saborlocal shadow-sm" expand="lg" variant="light">
         <Container>
-          <Navbar.Brand
-            as={Link}
-            to="/"
-            className="fw-bold"
-            style={{ color: '#000' }}
-          >
-            Sabor<span className="text-accent">Local</span>
+          <Navbar.Brand as={Link} to="/" className="brand-saborlocal">
+            <div>
+              <span className="brand-main">Sabor</span>
+              <span className="brand-accent">Local</span>
+            </div>
+            <span className="brand-sub">
+              Tienda artesanal de sabores locales
+            </span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="main-navbar" />
@@ -41,60 +41,40 @@ const NavBar = () => {
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">Inicio</Nav.Link>
 
-              <NavDropdown title="Productos" id="productos-dropdown">
-                <NavDropdown.Item as={Link} to="/products">
-                  Todos
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/products">
-                  Lácteos
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/products">
-                  Conservas
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/products">
-                  Panadería
-                </NavDropdown.Item>
-              </NavDropdown>
+              {/* Link simple a productos, sin dropdown */}
+              <Nav.Link as={Link} to="/products">Productos</Nav.Link>
 
               <Nav.Link as={Link} to="/contact">Contacto</Nav.Link>
             </Nav>
 
+            {/* Lado derecho: login + carrito */}
             <div className="d-flex align-items-center gap-3">
-              {/* Lupa decorativa */}
-              <button type="button" className="icon-button">
-                🔍
-              </button>
-
-              {/* Usuario / login transparente */}
               {auth.isAuthenticated ? (
-                <Button
-                  variant="outline-secondary"
-                  size="sm"
+                <button
+                  type="button"
+                  className="icon-button minimal-text"
                   onClick={handleLogout}
                 >
                   Cerrar sesión
-                </Button>
+                </button>
               ) : (
                 <button
                   type="button"
-                  className="icon-button"
+                  className="icon-button minimal-text"
                   onClick={() => navigate('/login')}
                 >
-                  👤
+                  Iniciar sesión
                 </button>
               )}
 
-              {/* Carrito con contador */}
               <button
                 type="button"
                 className="icon-button position-relative"
                 onClick={() => setShowCart(true)}
               >
-                🛒
+                &#128722;
                 {carrito.length > 0 && (
-                  <span className="cart-badge">
-                    {carrito.length}
-                  </span>
+                  <span className="cart-badge">{carrito.length}</span>
                 )}
               </button>
             </div>

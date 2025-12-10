@@ -5,7 +5,7 @@ const Filters = ({
   categorias,
   categoriaSeleccionada,
   setCategoriaSeleccionada,
-  totalProductos
+  totalProductos,
 }) => {
   const isAll = categoriaSeleccionada === 'Todos';
 
@@ -17,14 +17,15 @@ const Filters = ({
     <div className="d-flex align-items-center justify-content-between mb-3">
       <ButtonGroup>
         <Button
-          variant={isAll ? 'primary' : 'outline-primary'}
+          className={isAll ? 'filter-btn filter-btn-active' : 'filter-btn'}
           onClick={() => handleChange('Todos')}
         >
           Todos{' '}
           {typeof totalProductos === 'number' && (
             <Badge
-              bg={isAll ? 'light' : 'primary'}
-              className="ms-1"
+              bg="light"
+              text="dark"
+              className="ms-1 filter-badge"
             >
               {totalProductos}
             </Badge>
@@ -36,7 +37,7 @@ const Filters = ({
           return (
             <Button
               key={cat}
-              variant={active ? 'primary' : 'outline-primary'}
+              className={active ? 'filter-btn filter-btn-active' : 'filter-btn'}
               onClick={() => handleChange(cat)}
             >
               {cat}

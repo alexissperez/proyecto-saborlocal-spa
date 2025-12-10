@@ -1,5 +1,8 @@
+// src/pages/Contact.jsx
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import bannerImg from '../assets/Imagen-centro.png';
 
 const Contact = () => {
   const [form, setForm] = useState({ nombre: '', correo: '', mensaje: '' });
@@ -22,7 +25,7 @@ const Contact = () => {
     e.preventDefault();
     const val = validate();
     if (Object.keys(val).length === 0) {
-      setMensajeExito('¡Mensaje enviado con éxito (simulado)!');
+      setMensajeExito('¡Mensaje enviado con éxito!');
       setForm({ nombre: '', correo: '', mensaje: '' });
       setErrores({});
     } else {
@@ -32,67 +35,105 @@ const Contact = () => {
   };
 
   return (
-    <Container style={{ maxWidth: 640 }}>
-      <h2 className="mb-3">Contacto</h2>
-      <p className="text-muted mb-4">
-        Déjanos tu mensaje y un representante de SaborLocal se pondrá en contacto contigo.
-      </p>
+    <>
+      {/* Banner superior igual que login */}
+      <div
+        className="forgot-banner"
+        style={{ backgroundImage: `url(${bannerImg})` }}
+      >
+        <div className="forgot-banner-inner">
+          <h2>Contacto</h2>
+          <p>
+            <Link to="/" className="text-muted text-decoration-none">
+              Inicio
+            </Link>{' '}
+            / <span>Contacto</span>
+          </p>
+        </div>
+      </div>
 
-      <Form onSubmit={handleSubmit} noValidate>
-        <Form.Group className="mb-3">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            type="text"
-            name="nombre"
-            value={form.nombre}
-            onChange={handleChange}
-            isInvalid={!!errores.nombre}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errores.nombre}
-          </Form.Control.Feedback>
-        </Form.Group>
+      {/* Cuerpo, mismo layout de card centrada */}
+      <main className="login-wrapper">
+        <div className="login-panel">
+          {mensajeExito && (
+            <Alert className="mb-3" variant="success">
+              {mensajeExito}
+            </Alert>
+          )}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Correo electrónico</Form.Label>
-          <Form.Control
-            type="email"
-            name="correo"
-            value={form.correo}
-            onChange={handleChange}
-            isInvalid={!!errores.correo}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errores.correo}
-          </Form.Control.Feedback>
-        </Form.Group>
+          <div className="border rounded bg-white p-4">
+            <Form onSubmit={handleSubmit} noValidate>
+              <Row className="mb-3">
+                <Form.Label className="col-sm-3 col-form-label">
+                  Nombre
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    type="text"
+                    name="nombre"
+                    value={form.nombre}
+                    onChange={handleChange}
+                    isInvalid={!!errores.nombre}
+                    placeholder="Tu nombre completo"
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errores.nombre}
+                  </Form.Control.Feedback>
+                </Col>
+              </Row>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Mensaje</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={4}
-            name="mensaje"
-            value={form.mensaje}
-            onChange={handleChange}
-            isInvalid={!!errores.mensaje}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errores.mensaje}
-          </Form.Control.Feedback>
-        </Form.Group>
+              <Row className="mb-3">
+                <Form.Label className="col-sm-3 col-form-label">
+                  Correo electrónico
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    type="email"
+                    name="correo"
+                    value={form.correo}
+                    onChange={handleChange}
+                    isInvalid={!!errores.correo}
+                    placeholder="ejemplo@correo.cl"
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errores.correo}
+                  </Form.Control.Feedback>
+                </Col>
+              </Row>
 
-        <Button variant="success" type="submit">
-          Enviar
-        </Button>
-      </Form>
+              <Row className="mb-4">
+                <Form.Label className="col-sm-3 col-form-label">
+                  Mensaje
+                </Form.Label>
+                <Col sm={9}>
+                  <Form.Control
+                    as="textarea"
+                    rows={4}
+                    name="mensaje"
+                    value={form.mensaje}
+                    onChange={handleChange}
+                    isInvalid={!!errores.mensaje}
+                    placeholder="Cuéntanos en qué podemos ayudarte"
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errores.mensaje}
+                  </Form.Control.Feedback>
+                </Col>
+              </Row>
 
-      {mensajeExito && (
-        <Alert className="mt-3" variant="success">
-          {mensajeExito}
-        </Alert>
-      )}
-    </Container>
+              <div className="text-end">
+                <Button
+                  type="submit"
+                  className="btn-saborlocal px-4"
+                >
+                  Enviar mensaje
+                </Button>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </main>
+    </>
   );
 };
 

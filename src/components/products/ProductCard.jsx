@@ -9,7 +9,7 @@ const ProductCard = ({ producto, onAgregar }) => {
   const imagen = producto.imagen || producto.imageUrl;
 
   return (
-    <Card className="h-100 shadow-sm card-hover">
+    <Card className="h-100 shadow-sm card-hover product-card">
       {imagen && (
         <Card.Img
           variant="top"
@@ -22,13 +22,19 @@ const ProductCard = ({ producto, onAgregar }) => {
 
       <Card.Body className="d-flex flex-column">
         <div className="d-flex justify-content-between align-items-start mb-2">
-          <Card.Title className="mb-0" style={{ fontSize: '1rem', lineHeight: 1.2 }}>
+          <Card.Title
+            className="mb-0"
+            style={{ fontSize: '1rem', lineHeight: 1.2 }}
+          >
             {nombre}
           </Card.Title>
           {categoria && <Badge bg="secondary">{categoria}</Badge>}
         </div>
 
-        <Card.Text className="text-muted mb-3" style={{ fontSize: '0.9rem' }}>
+        <Card.Text
+          className="text-muted mb-3"
+          style={{ fontSize: '0.9rem' }}
+        >
           {productor && (
             <>
               <strong>Productor:</strong> {productor}
@@ -43,8 +49,8 @@ const ProductCard = ({ producto, onAgregar }) => {
 
         <Button
           variant="primary"
-          onClick={() => onAgregar(producto)}
           className="mt-auto"
+          onClick={() => onAgregar(producto)}
           aria-label={`Agregar ${nombre} al carrito`}
         >
           Agregar al carrito

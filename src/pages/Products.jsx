@@ -1,12 +1,14 @@
+// src/pages/Products.jsx
 import React, { useContext, useMemo, useState } from 'react';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { products, categories } from '../data/gaming.mock';
 import { AppContext } from '../context/AppContext';
 import Filters from '../components/products/Filters';
 import ProductGrid from '../components/products/ProductGrid';
+import bannerImg from '../assets/Imagen-centro.png';
 
 const Products = () => {
-  const { agregarAlCarrito, carrito } = useContext(AppContext);
+  const { agregarAlCarrito } = useContext(AppContext);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
 
   const productosFiltrados = useMemo(() => {
@@ -20,23 +22,29 @@ const Products = () => {
 
   return (
     <main>
-      <Container className="mt-4">
-        <Row className="align-items-center mb-3">
-        <Col>
-          <h2 className="mb-1">Catálogo SaborLocal</h2>
+      {/* Banner superior */}
+      <div
+        className="forgot-banner"
+        style={{ backgroundImage: `url(${bannerImg})` }}
+      >
+        <div className="forgot-banner-inner">
+          <h2>Catálogo SaborLocal</h2>
           <p className="text-muted mb-0">
-            Lácteos, conservas y panadería artesanal de productores locales.
+            Productos artesanales de café, lácteos, conservas, panadería, especias y más.
           </p>
-        </Col>
-        </Row>
+        </div>
+      </div>
 
-
-        <Filters
-          categorias={['Todos', ...categories]}
-          categoriaSeleccionada={categoriaSeleccionada}
-          setCategoriaSeleccionada={setCategoriaSeleccionada}
-          totalProductos={products.length}
-        />
+      {/* Contenido del catálogo sin título repetido */}
+      <Container className="mt-4 mb-5">
+        <div className="catalog-filters mb-4">
+          <Filters
+            categorias={['Todos', ...categories]}
+            categoriaSeleccionada={categoriaSeleccionada}
+            setCategoriaSeleccionada={setCategoriaSeleccionada}
+            totalProductos={products.length}
+          />
+        </div>
 
         <ProductGrid
           productos={productosFiltrados}

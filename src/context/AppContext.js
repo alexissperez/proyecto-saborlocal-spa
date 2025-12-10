@@ -1,10 +1,16 @@
+// src/context/AppContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 import { getToken, getUser, isAuthenticated } from '../services/authService';
 
 export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-  const [carrito, setCarrito] = useState([]);
+  // Carrito persistente
+  const [carrito, setCarrito] = useState(() => {
+    const saved = localStorage.getItem('saborlocal_cart');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [auth, setAuth] = useState({
     loading: true,
     isAuthenticated: false,
@@ -31,7 +37,12 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  // Manejo de auth
+  // Sincronizar carrito con localStorage
+  useEffect(() => {
+    localStorage.setItem('saborlocal_cart', JSON.stringify(carrito));
+  }, [carrito]);
+
+  // Auth
   const login = (user, token) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
@@ -51,6 +62,7 @@ export const AppProvider = ({ children }) => {
       user: null,
     });
     setCarrito([]);
+    localStorage.removeItem('saborlocal_cart');
   };
 
   // Carrito
@@ -58,8 +70,13 @@ export const AppProvider = ({ children }) => {
     setCarrito((prev) => [...prev, producto]);
   };
 
+  const eliminarDelCarrito = (index) => {
+    setCarrito((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const vaciarCarrito = () => {
     setCarrito([]);
+    localStorage.removeItem('saborlocal_cart');
   };
 
   return (
@@ -67,6 +84,7 @@ export const AppProvider = ({ children }) => {
       value={{
         carrito,
         agregarAlCarrito,
+        eliminarDelCarrito,
         vaciarCarrito,
         auth,
         login,
@@ -79,3 +97,4 @@ export const AppProvider = ({ children }) => {
 };
 
 export default AppContext;
+
