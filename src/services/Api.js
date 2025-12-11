@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { getToken } from './authService';
+import { getToken } from './services/authService';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://localhost:8081/auth/login',
 });
+
 
 // Interceptor: agregar token a cada petición
 api.interceptors.request.use((config) => {

@@ -1,5 +1,5 @@
 // src/services/authService.js
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://localhost:8081';
 
 export const login = async (credentials) => {
   const response = await fetch(`${API_URL}/auth/login`, {
@@ -7,10 +7,15 @@ export const login = async (credentials) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(credentials),
   });
+
   if (!response.ok) throw new Error('Credenciales inválidas');
+
   const data = await response.json();
   localStorage.setItem('token', data.token);
-  localStorage.setItem('user', JSON.stringify({ email: data.email, rol: data.rol }));
+  localStorage.setItem(
+    'user',
+    JSON.stringify({ email: data.email, rol: data.rol })
+  );
   return data;
 };
 
@@ -21,7 +26,6 @@ export const logout = () => {
 
 export const getToken = () => localStorage.getItem('token');
 
-export const getUser = () =>
-  JSON.parse(localStorage.getItem('user'));
+export const getUser = () => JSON.parse(localStorage.getItem('user'));
 
 export const isAuthenticated = () => !!getToken();
