@@ -1,0 +1,16 @@
+2025-12-18 00:20:16.250754-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT PRODUCTOS * [*]FROM CLIENTES PRODUCTOS"
+Syntax error in SQL statement "SELECT PRODUCTOS * [*]FROM CLIENTES PRODUCTOS"; SQL statement:
+SELECT PRODUCTOS * FROM CLIENTES PRODUCTOS [42000-232]
+2025-12-18 00:21:20.348547-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PRODUCTORES CLIENTES [*]CLIENTES"
+Syntax error in SQL statement "SELECT * FROM PRODUCTORES CLIENTES [*]CLIENTES"; SQL statement:
+SELECT * FROM PRODUCTORES CLIENTES CLIENTES [42000-232]
+2025-12-18 00:59:17.594854-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]PRODUCTOS"; se esperaba "PREPARE"
+Syntax error in SQL statement "[*]PRODUCTOS"; expected "PREPARE"; SQL statement:
+PRODUCTOS [42001-232]
+2025-12-18 01:07:51.908781-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]PRODUCTOS"; se esperaba "PREPARE"
+Syntax error in SQL statement "[*]PRODUCTOS"; expected "PREPARE"; SQL statement:
+PRODUCTOS [42001-232]
